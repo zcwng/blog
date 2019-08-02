@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>东方不败 的Mtons</title>
+<meta property="mtons:mblog" content="2.2.1">
+
+<script src="/assets/vendors/pace/pace.min.js"></script>
+<link href="/assets/vendors/pace/themes/pace-theme-minimal.css" rel="stylesheet" />
+
+<link rel='stylesheet' media='all' href='/assets/vendors/font-awesome/css/font-awesome.min.css'/>
+<link rel="stylesheet" media='all' href="/assets/vendors/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" media='all' href="/assets/vendors/animate/animate.min.css">
+<link rel='stylesheet' media='all' href='/assets/css/style.css'/>
+<link rel='stylesheet' media='all' href='/assets/css/layout.css'/>
+<link rel='stylesheet' media='all' href='/assets/css/plugins.css'/>
+<link rel='stylesheet' media='all' href='/assets/css/addons.css'/>
+
+<link rel='stylesheet' media='all' href="/assets/vendors/baguette/baguetteBox.min.css"/>
+
+<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/utils.js"></script>
+
+<script type="text/javascript" src="/assets/vendors/layer/layer.js"></script>
+
+<script type="text/javascript" src="/assets/js/sea.js"></script>
+<script type="text/javascript" src="/assets/js/sea.config.js"></script>
+
+<!-- Favicons -->
+<link rel="apple-touch-icon-precomposed" href="/assets/images/logo.png"/>
+<link rel="shortcut icon" href="/assets/images/logo.png"/>
+
+<script type="text/javascript">
+    var _base_path = '$!{base}';
+
+    window.app = {
+        base: '',
+        LOGIN_TOKEN: '$!{profile.id}'
+    };
+	
+	window.UEDITOR_HOME_URL = '/assets/vendors/ueditor/';
+</script>
+</head>
+<body>
+
+<!-- Login dialog BEGIN -->
+<div id="loginalert" style="display: none; top: 0px;" class="fade in">
+    <div class="pd20 loginpd">
+        <h3><i class="closealert fr" data-dismiss="modal" aria-label="Close"></i><div class="clear"></div></h3>
+        <div class="loginwrap">
+            <div class="loginh">
+                <div class="fl">会员登录</div>
+                <div class="fr">还没有账号<a id="sigup_now" href="/reg">立即注册</a></div>
+            </div>
+            <h3><span class="login_warning" id="login_warning" style="display: none;">用户名或密码错误</span><div class="clear"></div></h3>
+            <form action="" method="post" id="login_form">
+                <div class="logininput">
+                    <input type="text" id="alt_un" name="username" class="loginusername" value="" placeholder="用户名">
+                    <input type="password" id="alt_pw" name="password" class="loginuserpasswordp" placeholder="密码">
+                </div>
+                <div class="loginbtn">
+                    <div class="loginsubmit fl"><input type="button" value="登录" id="alt_login" class="btn"></div>
+                    <!--
+                    <div class="fr" style="margin:26px 0 0 0;"><a href="##">忘记密码?</a></div>
+                    -->
+                    <div class="clear"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="thirdlogin">
+        <div class="pd50">
+            <h4>用第三方帐号直接登录</h4>
+            <ul>
+                <li id="sinal"><a href="/oauth/callback/call_weibo">微博帐号注册</a></li>
+                <li id="qql" style="margin-right: 0px;"><a href="/oauth/callback/call_qq">QQ帐号注册</a></li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<!-- Login dialog END -->
+
+<!-- Header BEGIN -->
+<div class="top-wrap">
+    <nav class="navbar navbar-inverse" role="navigation">
+<!--[if lt IE 9]>
+<div class="alert alert-danger alert-dismissible fade in" role="alert" style="margin-bottom:0">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+      <strong>您正在使用低版本浏览器，</strong> 在本页面的显示效果可能有差异。
+        建议您升级到
+        <a href="http://www.google.cn/intl/zh-CN/chrome/" target="_blank">Chrome</a>
+        或以下浏览器：
+        <a href="www.mozilla.org/en-US/firefox/‎" target="_blank">Firefox</a> /
+        <a href="http://www.apple.com.cn/safari/" target="_blank">Safari</a> /
+        <a href="http://www.opera.com/" target="_blank">Opera</a> /
+        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">Internet Explorer 9+</a>
+</div>
+<![endif]-->
+    	<div class="container">
+    		<div class="navbar-header">
+    			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+    				<span class="sr-only">Toggle navigation</span>
+    				<span class="icon-bar"></span>
+    				<span class="icon-bar"></span>
+    				<span class="icon-bar"></span>
+    			</button>
+    			<a class="navbar-brand logo" href="/index"><img src="/assets/images/logo/logo_full.png"></a>
+    		</div>
+    		<div id="navbar" class="navbar-collapse collapse">
+    			<ul class="nav navbar-nav">
+    				<li data="home">
+    					<a href="/home" nav="home">我的主页</a>
+    				</li>
+					<li>
+    					<a href="/g/blog" nav="博文">博文</a>
+    				</li>
+					<li>
+    					<a href="/g/web" nav="WEB">WEB</a>
+    				</li>
+					<li>
+    					<a href="/g/tutorial" nav="教程">教程</a>
+    				</li>
+					
+    			</ul>
+    			<div id="_search_box" class="search-box navbar-left hidden-xs hidden-sm">
+    				<form class="navbar-form" method="get" action="/search">
+    					<input type="text" class="form-control" name="q" placeholder="搜索...">
+						<button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+    				</form>
+    			</div>
+    			
+    			<ul class="nav navbar-nav navbar-right sign">
+					<li class="dropdown">
+                        <a href="/post/new" class="publish"><i class="fa fa-magic"></i> 写文章</a>
+					</li>
+    				<li class="dropdown">
+    					<a href="#" class="ava dropdown-toggle" data-toggle="dropdown">
+    						<img class="img-circle" src="/assets/images/ava/default.png">
+    					</a>
+    					<ul class="dropdown-menu" role="menu">
+    		                <li>
+    		                	<a href="/account/profile" class="ava">
+    <img class="img-circle" src="/assets/images/ava/default.png"/>
+    		                		<span>浮云</span>
+    		                	</a>
+    		               	</li>
+    		                <li class="divider"></li>
+
+								<li><a href="/admin">后台管理</a></li>
+
+    		                <li><a href="/logout">退出</a></li>
+    		              </ul>
+    				</li>
+    			</ul>
+    		</div>
+    	</div>
+    </nav>
+</div>
+<script type="text/javascript">
+$(function () {
+	$('a[nav]').each(function(){  
+        $this = $(this);
+        if($this[0].href == String(window.location)){  
+            $this.closest('li').addClass("active");  
+        }  
+    });
+});
+</script>
+<!-- Header END -->
+	<!--.site-main -->
+	<div class="wrap">
+		<div class="profile">
+			<div class="container">
+				<div class="avatar animated fadeInDown">
+    <img class="img-circle" src="/assets/images/ava/2.jpg"/>
+				</div>
+				<h1>东方不败</h1>
+
+				<h2>日出东方，唯我不败，文成武德，天下第一，千秋万载，一统江湖。</h2>
+				<a class="btn btn-white" href="javascript:void(0);" data-id="4" rel="follow">+ 关注</a>
+			</div>
+		</div>
+
+		<nav id="profile-navigation" class="profile-navbar">
+			<div class="container">
+				<div class="content">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="javascript:void(0);)">TA的文章</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container">
+			<div class="row">
+				<div class="main clearfix">
+					<div class="col-xs-12 col-md-12">
+						<div class="shadow-box mt20">
+							<div class="stream-list">
+								<div class="stream-item" id="loop-18">
+									<div class="blog-rank">
+										<div class="votes #if(1 > 0) plus #end">
+											1<small>喜欢</small>
+										</div>
+										<div class="views hidden-xs">
+											0<small>评论</small>
+										</div>
+									</div>
+									<div class="summary">
+										<h2 class="title"><a href="/view/18">XML 和 Json 的特点</a></h2>
+
+										<div class="excerpt wordbreak hidden-xs">Xml 特点：&nbsp; 1、有且仅有一个根节点； 2、是独立与软件和硬件的信息传输工具（传输量较大）&nbsp; 3、所有的标签都需要自定义&nbsp; 4、仅仅是纯文本文件 Json（JavaScript Object Notation）特... &nbsp;</div>
+
+										<!--前端图片显示样式-->
+
+										<div class="foot-block clearfix">
+											<div class="author">
+												<time>1小时前</time>
+											</div>
+											<ul class="tags">
+											</ul>
+											<div class="pull-right hidden-xs">
+												<span class="act">浏览 (<i>0</i>)</span>
+												<span class="act">喜欢 (<i>1</i>)</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="stream-item" id="loop-17">
+									<div class="blog-rank">
+										<div class="votes #if(2 > 0) plus #end">
+											2<small>喜欢</small>
+										</div>
+										<div class="views hidden-xs">
+											0<small>评论</small>
+										</div>
+									</div>
+									<div class="summary">
+										<h2 class="title"><a href="/view/17">Forword(请求转发)与 Redirect(重定向)</a></h2>
+
+										<div class="excerpt wordbreak hidden-xs">1.从数据共享上 Forword 是一个请求的延续，可以共享 request 的数据 Redirect 开启一个新的请求，不可以共享 request 的数据&nbsp; 2.从地址栏 Forword 转发地址栏不发生变化 Redirect 转发地... &nbsp;</div>
+
+										<!--前端图片显示样式-->
+
+										<div class="foot-block clearfix">
+											<div class="author">
+												<time>1小时前</time>
+											</div>
+											<ul class="tags">
+											</ul>
+											<div class="pull-right hidden-xs">
+												<span class="act">浏览 (<i>0</i>)</span>
+												<span class="act">喜欢 (<i>2</i>)</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="stream-item" id="loop-16">
+									<div class="blog-rank">
+										<div class="votes #if(2 > 0) plus #end">
+											2<small>喜欢</small>
+										</div>
+										<div class="views hidden-xs">
+											0<small>评论</small>
+										</div>
+									</div>
+									<div class="summary">
+										<h2 class="title"><a href="/view/16">Hashtable 与 HashMap 的区别</a></h2>
+
+										<div class="excerpt wordbreak hidden-xs">HashMap 不是线程安全的，HashTable 是线程安全。 &nbsp;HashMap 允许空（null）的键和值（key），HashTable 则不允许。 &nbsp;HashMap 性能优于 Hashtable。 Map&nbsp;  ... &nbsp;</div>
+
+										<!--前端图片显示样式-->
+
+										<div class="foot-block clearfix">
+											<div class="author">
+												<time>1小时前</time>
+											</div>
+											<ul class="tags">
+											</ul>
+											<div class="pull-right hidden-xs">
+												<span class="act">浏览 (<i>0</i>)</span>
+												<span class="act">喜欢 (<i>2</i>)</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="stream-item" id="loop-11">
+									<div class="blog-rank">
+										<div class="votes #if(2 > 0) plus #end">
+											2<small>喜欢</small>
+										</div>
+										<div class="views hidden-xs">
+											0<small>评论</small>
+										</div>
+									</div>
+									<div class="summary">
+										<h2 class="title"><a href="/view/11">ssh和ssm的区别</a></h2>
+
+										<div class="excerpt wordbreak hidden-xs">1.SSH框架是Struct+Spring+Hibernate而SSM是指的Spring-MVC+Spring+MyBatis, 光从这两个缩写就可以看出来，如果比较两者的区别的话主要比较Struct和 Spring-MVC以及Hibernate... &nbsp;</div>
+
+										<!--前端图片显示样式-->
+
+										<div class="foot-block clearfix">
+											<div class="author">
+												<time>23小时前</time>
+											</div>
+											<ul class="tags">
+											</ul>
+											<div class="pull-right hidden-xs">
+												<span class="act">浏览 (<i>0</i>)</span>
+												<span class="act">喜欢 (<i>2</i>)</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="text-center clr">
+
+<ul class="pagination">
+
+    <li class="active"><a href="javascript:void(0);"><span>1</span></a></li>
+
+</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<footer>
+	<div class="footer-nav">
+		<div class="container">
+			<ul class="about-ul list-inline clearfix">
+				<li><a href="/about">关于我们</a></li>
+				<li><a href="/joinus">联系我们</a></li>
+				<li><a href="/faqs">常见问题</a></li>
+                <li>
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                            var hm = document.createElement("script");
+                            hm.src = "//hm.baidu.com/hm.js?a029e6c6dddf427f4cbfb2b00d7d5311";
+                            var s = document.getElementsByTagName("script")[0];
+                            s.parentNode.insertBefore(hm, s);
+                        })();
+                    </script>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="container mode-link">
+        <h3 class="t-h3">友情链接</h3>
+        <ul class="list-inline">
+            <li><a href="http://www.mtons.com" target="_blank" title="Mtons社区">Mtons社区</a></li>
+        </ul>
+    </div>
+	<div class="container copy-right">
+		<span> <a
+			href="http://www.miitbeian.gov.cn/" target="_blank"></a>
+		</span>
+		<span class="pull-right">Powered By <a href="http://mtons.com/?copyright" target="_blank">Mtons</a></span>
+	</div>
+
+</footer>
+
+<a href="#" class="site-scroll-top"></a>
+
+<script type="text/javascript">
+    seajs.use('main', function (main) {
+        main.init();
+    });
+</script></body>
+</html>

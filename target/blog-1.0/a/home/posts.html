@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class="app">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>我的主页 - Mtons</title>
+    <meta name="keywords" content="mtons,mtons,博客,社区,摄影,旅游,艺术,娱乐"/>
+    <meta name="description" content="Mtons, 轻松分享你的兴趣. 便捷的文字、图片发布,扁平化的响应式设计,美观、大气,是您记录生活的最佳选择"/>
+<meta property="mtons:mblog" content="2.2.1">
+
+<script src="/assets/vendors/pace/pace.min.js"></script>
+<link href="/assets/vendors/pace/themes/pace-theme-minimal.css" rel="stylesheet" />
+
+<link rel='stylesheet' media='all' href='/assets/vendors/font-awesome/css/font-awesome.min.css'/>
+<link rel="stylesheet" media='all' href="/assets/vendors/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" media='all' href="/assets/vendors/animate/animate.min.css">
+<link rel='stylesheet' media='all' href='/assets/css/style.css'/>
+<link rel='stylesheet' media='all' href='/assets/css/layout.css'/>
+<link rel='stylesheet' media='all' href='/assets/css/plugins.css'/>
+<link rel='stylesheet' media='all' href='/assets/css/addons.css'/>
+
+<link rel='stylesheet' media='all' href="/assets/vendors/baguette/baguetteBox.min.css"/>
+
+<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/utils.js"></script>
+
+<script type="text/javascript" src="/assets/vendors/layer/layer.js"></script>
+
+<script type="text/javascript" src="/assets/js/sea.js"></script>
+<script type="text/javascript" src="/assets/js/sea.config.js"></script>
+
+<!-- Favicons -->
+<link rel="apple-touch-icon-precomposed" href="http://mtons.com/dist/images/logo.png"/>
+<link rel="shortcut icon" href="http://mtons.com/dist/images/logo.png"/>
+
+<script type="text/javascript">
+    var _base_path = '$!{base}';
+
+    window.app = {
+        base: '',
+        LOGIN_TOKEN: '$!{profile.id}'
+    };
+	
+	window.UEDITOR_HOME_URL = '/assets/vendors/ueditor/';
+</script>
+</head>
+<body>
+
+<!-- Login dialog BEGIN -->
+<div id="loginalert" style="display: none; top: 0px;" class="fade in">
+    <div class="pd20 loginpd">
+        <h3><i class="closealert fr" data-dismiss="modal" aria-label="Close"></i><div class="clear"></div></h3>
+        <div class="loginwrap">
+            <div class="loginh">
+                <div class="fl">会员登录</div>
+                <div class="fr">还没有账号<a id="sigup_now" href="/reg">立即注册</a></div>
+            </div>
+            <h3><span class="login_warning" id="login_warning" style="display: none;">用户名或密码错误</span><div class="clear"></div></h3>
+            <form action="" method="post" id="login_form">
+                <div class="logininput">
+                    <input type="text" id="alt_un" name="username" class="loginusername" value="" placeholder="用户名">
+                    <input type="password" id="alt_pw" name="password" class="loginuserpasswordp" placeholder="密码">
+                </div>
+                <div class="loginbtn">
+                    <div class="loginsubmit fl"><input type="button" value="登录" id="alt_login" class="btn"></div>
+                    <!--
+                    <div class="fr" style="margin:26px 0 0 0;"><a href="##">忘记密码?</a></div>
+                    -->
+                    <div class="clear"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="thirdlogin">
+        <div class="pd50">
+            <h4>用第三方帐号直接登录</h4>
+            <ul>
+                <li id="sinal"><a href="/oauth/callback/call_weibo">微博帐号注册</a></li>
+                <li id="qql" style="margin-right: 0px;"><a href="/oauth/callback/call_qq">QQ帐号注册</a></li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<!-- Login dialog END -->
+
+<!-- Header BEGIN -->
+<div class="top-wrap">
+    <nav class="navbar navbar-inverse" role="navigation">
+<!--[if lt IE 9]>
+<div class="alert alert-danger alert-dismissible fade in" role="alert" style="margin-bottom:0">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+      <strong>您正在使用低版本浏览器，</strong> 在本页面的显示效果可能有差异。
+        建议您升级到
+        <a href="http://www.google.cn/intl/zh-CN/chrome/" target="_blank">Chrome</a>
+        或以下浏览器：
+        <a href="www.mozilla.org/en-US/firefox/‎" target="_blank">Firefox</a> /
+        <a href="http://www.apple.com.cn/safari/" target="_blank">Safari</a> /
+        <a href="http://www.opera.com/" target="_blank">Opera</a> /
+        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">Internet Explorer 9+</a>
+</div>
+<![endif]-->
+    	<div class="container">
+    		<div class="navbar-header">
+    			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+    				<span class="sr-only">Toggle navigation</span>
+    				<span class="icon-bar"></span>
+    				<span class="icon-bar"></span>
+    				<span class="icon-bar"></span>
+    			</button>
+    			<a class="navbar-brand logo" href="/index"><img src="/assets/images/logo/logo_full.png"></a>
+    		</div>
+    		<div id="navbar" class="navbar-collapse collapse">
+    			<ul class="nav navbar-nav">
+    				<li data="home">
+    					<a href="/home" nav="home">我的主页</a>
+    				</li>
+					<li>
+    					<a href="/g/blog" nav="博文">博文</a>
+    				</li>
+					<li>
+    					<a href="/g/web" nav="WEB">WEB</a>
+    				</li>
+					<li>
+    					<a href="/g/tutorial" nav="教程">教程</a>
+    				</li>
+					
+    			</ul>
+    			<div id="_search_box" class="search-box navbar-left hidden-xs hidden-sm">
+    				<form class="navbar-form" method="get" action="/search">
+    					<input type="text" class="form-control" name="q" placeholder="搜索...">
+						<button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+    				</form>
+    			</div>
+    			
+    			<ul class="nav navbar-nav navbar-right sign">
+					<li class="dropdown">
+                        <a href="/post/new" class="publish"><i class="fa fa-magic"></i> 写文章</a>
+					</li>
+    				<li class="dropdown">
+    					<a href="#" class="ava dropdown-toggle" data-toggle="dropdown">
+    						<img class="img-circle" src="/assets/images/ava/default.png">
+    					</a>
+    					<ul class="dropdown-menu" role="menu">
+    		                <li>
+    		                	<a href="/account/profile" class="ava">
+    <img class="img-circle" src="/assets/images/ava/default.png"/>
+    		                		<span>浮云</span>
+    		                	</a>
+    		               	</li>
+    		                <li class="divider"></li>
+
+								<li><a href="/admin">后台管理</a></li>
+
+    		                <li><a href="/logout">退出</a></li>
+    		              </ul>
+    				</li>
+    			</ul>
+    		</div>
+    	</div>
+    </nav>
+</div>
+<script type="text/javascript">
+$(function () {
+	$('a[nav]').each(function(){  
+        $this = $(this);
+        if($this[0].href == String(window.location)){  
+            $this.closest('li').addClass("active");  
+        }  
+    });
+});
+</script>
+<!-- Header END -->
+    <!--.site-main -->
+    <div class="wrap" id="wrap">
+        <div class="container">
+            <div class="row">
+                <div class="main clearfix">
+                    <!-- left -->
+                    <div class="col-xs-12 col-md-3 side-left">
+
+<ul class="list-group about-user">
+    <li class="list-group-item user-card" >
+        <div class="ava">
+            <a href="/ta/1">
+    <img class="img-circle" src="/assets/images/ava/default.png"/>
+            </a>
+        </div>
+        <div class="user-info">
+            <div class="nk mb10">浮云</div>
+            <div class="mb6">
+                <a class="btn btn-success btn-xs" href="/account/profile"><i class="fa fa-pencil"></i> 修改账户</a>
+            </div>
+        </div>
+    </li>
+</ul>
+<nav class="navbar navbar-default shadow-box">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#home-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span class="navbar-brand">导航</span>
+        </div>
+    </div>
+    <div id="home-navbar" class="collapse navbar-collapse">
+        <ul class="list-group user-nav first">
+            <li class="list-group-item">
+                <a href="/home"><i class="fa fa-feed"></i> 动态</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/home/posts.html"><i class="fa fa-file-text-o"></i> 我的文章</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/home/comments.html"><i class="fa fa-comment-o"></i> 我的评论</a>
+            </li>
+        </ul>
+
+        <ul class="list-group user-nav">
+            <li class="list-group-item">
+                <a href="/home/favors.html"><i class="fa fa-heart-o"></i> 我的喜欢</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/home/follows.html"><i class="fa fa-eye"></i> 我的关注</a>
+            </li>
+            <li class="list-group-item">
+                <a href="/home/fans.html"><i class="fa fa-users"></i> 我的粉丝</a>
+            </li>
+        </ul>
+
+        <ul class="list-group user-nav">
+            <li class="list-group-item">
+                <a href="/home/notifies.html">
+                    <i class="fa fa-bell-o"></i> 通知 <span class="label label-danger">0</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+                    </div>
+
+                    <div class="col-xs-12 col-md-9 side-right">
+
+<div class="shadow-box">
+	<div class="filter">
+		<ul class="">
+			<li><a class="active" href="/home/posts.html">我的文章</a></li>
+		</ul>
+	</div>
+	<!-- tab panes -->
+	<div class="stream-list">
+		<div class="stream-item" id="loop-10">
+			<div class="blog-rank">
+				<div class="votes #if(1 > 0) plus #end">
+					1<small>喜欢</small>
+				</div>
+				<div class="views hidden-xs">
+					2<small>评论</small>
+				</div>
+			</div>
+			<div class="summary">
+				<h2 class="title"><a href="/view/10">Solr快速入门资料</a></h2>
+				<div class="excerpt wordbreak hidden-xs">使用windows学习，效率更高。  启动solr服务： java -jar example/start.jar  访问solr控制台： http://localhost:8983/solr/  切换目录到：solr/example/exampl... &nbsp;</div>
+
+				<!--前端图片显示样式-->
+
+				<div class="foot-block clearfix">
+					<div class="author">
+						<time>昨天</time>
+					</div>
+					<ul class="tags">
+					</ul>
+					<div class="pull-right hidden-xs">
+						<a class="act_edit" href="javascript:void(0);" data-evt="edit" data-id="10">修改</a>
+						<a class="act_delete" href="javascript:void(0);" data-evt="trash" data-id="10">删除</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="stream-item" id="loop-9">
+			<div class="blog-rank">
+				<div class="votes #if(0 > 0) plus #end">
+					0<small>喜欢</small>
+				</div>
+				<div class="views hidden-xs">
+					0<small>评论</small>
+				</div>
+			</div>
+			<div class="summary">
+				<h2 class="title"><a href="/view/9">allowed-methods</a></h2>
+				<div class="excerpt wordbreak hidden-xs">Struts2.5新加入了一个allowed-methods，用来设置哪些方法可以被访问， &lt;global-allowed-methods&gt;regex:.*&lt;/global-allowed-methods&gt;  八种基本类型... &nbsp;</div>
+
+				<!--前端图片显示样式-->
+
+				<div class="foot-block clearfix">
+					<div class="author">
+						<time>昨天</time>
+					</div>
+					<ul class="tags">
+					</ul>
+					<div class="pull-right hidden-xs">
+						<a class="act_edit" href="javascript:void(0);" data-evt="edit" data-id="9">修改</a>
+						<a class="act_delete" href="javascript:void(0);" data-evt="trash" data-id="9">删除</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="stream-item" id="loop-8">
+			<div class="blog-rank">
+				<div class="votes #if(0 > 0) plus #end">
+					0<small>喜欢</small>
+				</div>
+				<div class="views hidden-xs">
+					0<small>评论</small>
+				</div>
+			</div>
+			<div class="summary">
+				<h2 class="title"><a href="/view/8">声明式事务处理</a></h2>
+				<div class="excerpt wordbreak hidden-xs">声明式事务处理=我说一下这个地方应该有事务，于是就有了事务 神说，要有光，于是就有了光  要加一段Spring配置进行声明，同时还要配置Hibernate中的current_session_context_class=org.springfram... &nbsp;</div>
+
+				<!--前端图片显示样式-->
+
+				<div class="foot-block clearfix">
+					<div class="author">
+						<time>昨天</time>
+					</div>
+					<ul class="tags">
+					</ul>
+					<div class="pull-right hidden-xs">
+						<a class="act_edit" href="javascript:void(0);" data-evt="edit" data-id="8">修改</a>
+						<a class="act_delete" href="javascript:void(0);" data-evt="trash" data-id="8">删除</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="stream-item" id="loop-7">
+			<div class="blog-rank">
+				<div class="votes #if(0 > 0) plus #end">
+					0<small>喜欢</small>
+				</div>
+				<div class="views hidden-xs">
+					1<small>评论</small>
+				</div>
+			</div>
+			<div class="summary">
+				<h2 class="title"><a href="/view/7">Struts2与Spring整合</a></h2>
+				<div class="excerpt wordbreak hidden-xs">在引入struts-spring-plugin.jar之后， 所有的action就都已经托管给Spring，所以action里面可以自动装配， Dao与Service的实现类都应该放入Srping容器， 这样Spring才能自动处理action-... &nbsp;</div>
+
+				<!--前端图片显示样式-->
+
+				<div class="foot-block clearfix">
+					<div class="author">
+						<time>昨天</time>
+					</div>
+					<ul class="tags">
+					</ul>
+					<div class="pull-right hidden-xs">
+						<a class="act_edit" href="javascript:void(0);" data-evt="edit" data-id="7">修改</a>
+						<a class="act_delete" href="javascript:void(0);" data-evt="trash" data-id="7">删除</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+<div class="text-center clr">
+
+<ul class="pagination">
+
+    <li class="active"><a href="javascript:void(0);"><span>1</span></a></li>
+
+</ul>
+</div>
+
+<script type="text/javascript">
+$(function() {
+	// delete
+	$('a[data-evt=trash]').click(function () {
+		var id = $(this).attr('data-id');
+
+		layer.confirm('确定删除此项吗?', {
+            btn: ['确定','取消'], //按钮
+            shade: false //不显示遮罩
+        }, function(){
+			jQuery.getJSON('/post/delete/' + id, function (ret) {
+				layer.msg(ret.message, {icon: 1});
+				if (ret.code >=0) {
+					$('#loop-' + id).fadeOut();
+					$('#loop-' + id).remove();
+				}
+			});
+
+        }, function(){
+
+        });
+	});
+	
+	// edit
+	$('a[data-evt=edit]').click(function () {
+		var id = $(this).attr('data-id');
+		window.location.href='/post/to_update/' + id;
+	});
+})
+</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<footer>
+	<div class="footer-nav">
+		<div class="container">
+			<ul class="about-ul list-inline clearfix">
+				<li><a href="/about">关于我们</a></li>
+				<li><a href="/joinus">联系我们</a></li>
+				<li><a href="/faqs">常见问题</a></li>
+                <li>
+                    <script>
+                        var _hmt = _hmt || [];
+                        (function() {
+                            var hm = document.createElement("script");
+                            hm.src = "//hm.baidu.com/hm.js?a029e6c6dddf427f4cbfb2b00d7d5311";
+                            var s = document.getElementsByTagName("script")[0];
+                            s.parentNode.insertBefore(hm, s);
+                        })();
+                    </script>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="container mode-link">
+        <h3 class="t-h3">友情链接</h3>
+        <ul class="list-inline">
+            <li><a href="http://www.mtons.com" target="_blank" title="Mtons社区">Mtons社区</a></li>
+        </ul>
+    </div>
+	<div class="container copy-right">
+		<span> <a
+			href="http://www.miitbeian.gov.cn/" target="_blank"></a>
+		</span>
+		<span class="pull-right">Powered By <a href="http://mtons.com/?copyright" target="_blank">Mtons</a></span>
+	</div>
+
+</footer>
+
+<a href="#" class="site-scroll-top"></a>
+
+<script type="text/javascript">
+    seajs.use('main', function (main) {
+        main.init();
+    });
+</script></body>
+</html>

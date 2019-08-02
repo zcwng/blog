@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en" class="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mtons - 后台管理</title>
+
+    <!-- Bootstrap -->
+    <link href="/assets/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/assets/vendors/treeTable/themes/vsStyle/treeTable.min.css" rel="stylesheet"/>
+
+    <!-- Custom Theme Style -->
+    <link href="/assets/admin/css/custom.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src='/assets/vendors/validate/jquery-validate.js'></script>
+    <!-- FastClick -->
+    <script src="/assets/vendors/fastclick/lib/fastclick.js"></script>
+
+    <script src="/assets/vendors/layer/layer.js"></script>
+    <script src="/assets/vendors/treeTable/jquery.treeTable.min.js"></script>
+
+    <script type="text/javascript">
+        window.UEDITOR_HOME_URL = '/assets/vendors/ueditor/';
+    </script>
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="/index" class="site_title"><span>Mtons</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <br/>
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>系统菜单</h3>
+                        <ul class="nav side-menu">
+                            <li><a href="/admin"><i class="fa fa-home"></i> Home</a>
+                            </li>
+                                        <li><a href="/admin/posts/list" nav="2"><i class="fa fa-clone icon-xlarge"></i>文章管理</a></li>
+                                        <li><a href="/admin/users/list" nav="3"><i class="fa fa-user icon-xlarge"></i>用户管理</a></li>
+                                        <li><a href="/admin/comments/list" nav="4"><i class="fa fa-comments-o icon-xlarge"></i>评论管理</a></li>
+                                        <li><a href="/admin/group/list" nav="5"><i class="fa fa-tags icon-xlarge"></i>栏目管理</a></li>
+                                        <li><a href="/admin/config/" nav="6"><i class="fa fa-sun-o icon-xlarge"></i>系统配置</a></li>
+                                        <li><a href="/admin/roles/list" nav="7"><i class="fa fa fa-registered icon-xlarge"></i>角色管理</a></li>
+                                        <li><a href="/admin/authMenus/list" nav="8"><i class="fa fa-reorder icon-xlarge"></i>菜单管理</a></li>
+                                        <li><a href="/admin/friendLink/list" nav="8"><i class="fa fa-link"></i>友情链接</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="/assets/images/ava/default.png" alt="">admin
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="/account/profile"> Profile</a></li>
+                                <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div>
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>admin <small> 欢迎使用Mblog</small></h3>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>系统状态</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content" style="height: 231px;">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>内存消耗:</td>
+                        <td>
+						296.33M / 791M
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;">操作系统:</td>
+                        <td>Windows 10</td>
+                    </tr>
+                    <tr>
+                        <td style="width:120px;">JDK版本:</td>
+                        <td>1.8.0_171</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>内存使用情况</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <canvas id="canvas"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type='text/javascript' src='/assets/vendors/Chart.js/dist/Chart.min.js'></script>
+<script>
+	$(function () {
+        var ctx = document.getElementById("canvas");
+        var data = {
+            labels: [
+                "可用",
+                "已用"
+            ],
+            datasets: [{
+                data: [63, 100 - 63],
+                backgroundColor: [
+                    "#455C73",
+                    "#9B59B6"
+                ],
+                hoverBackgroundColor: [
+                    "#34495E",
+                    "#B370CF"
+                ]
+            }]
+        };
+
+        var canvasDoughnut = new Chart(ctx, {
+            type: 'doughnut',
+            tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+            data: data
+        });
+    })
+</script>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                Mblog - Powered By <a href="http://mtons.com/?copyright" target="_blank">Mtons</a>
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+    <!-- Custom Theme Scripts -->
+    <script src="/assets/admin/js/custom.min.js"></script>
+    <script src="/assets/admin/js/app.data.js"></script>
+</body>
+</html>

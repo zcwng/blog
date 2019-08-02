@@ -1,0 +1,23 @@
+﻿博客首页		/index.html
+登录			/login.html
+
+我的主页		/home/index.html
+我的评论		/home/comments.html
+我的粉丝		/home/fans.html
+我的喜欢		/home/favors.html
+我的关注		/home/follows.html
+我的通知		/home/notifies.html
+我的文章		/home/posts.html
+
+发布文章		/post/new.html
+TA的主页		/ta/index.html
+帖子展示		/view/10.html
+
+修改头像		/account/avatar.html
+修改密码		/account/password.html
+基本信息		/account/profile.html
+
+博文版块		/g/blog.html
+WEB版块		/g/web.html
+教程版块		/g/jiaocheng.html
+

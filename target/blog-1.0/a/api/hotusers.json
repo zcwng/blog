@@ -1,0 +1,23 @@
+[
+	{
+		"id": 1,
+		"username": "admin",
+		"password": null,
+		"avatar": "/assets/images/ava/default.png",
+		"name": "小豆丁",
+		"email": "admin@mtons.com",
+		"mobile": null,
+		"posts": 8,
+		"comments": 0,
+		"follows": 0,
+		"fans": 0,
+		"favors": 0,
+		"created": 1438854761000,
+		"source": 0,
+		"lastLogin": 1506677122000,
+		"signature": null,
+		"status": 0,
+		"activeEmail": 1,
+		"roles": []
+	}
+]

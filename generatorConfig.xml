@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="context1">
+    <jdbcConnection 
+    connectionURL="jdbc:mysql://localhost:3306/test" 
+    driverClass="com.mysql.jdbc.Driver" password="root" userId="root" />
+    <javaModelGenerator targetPackage="com.itshidu.ssm.pojo" targetProject="SSM/src/main/java" />
+    <sqlMapGenerator targetPackage="com.itshidu.ssm.mapper" targetProject="SSM/src/main/java" />
+    <javaClientGenerator targetPackage="com.itshidu.ssm.mapper" targetProject="SSM/src/main/java" type="XMLMAPPER" />
+    <table tableName="cc_sys_user" domainObjectName="User">
+      <columnOverride column="icon" property="avatar" />
+    </table>
+  </context>
+</generatorConfiguration>
